@@ -2,6 +2,9 @@
 
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404, HttpResponse
 from app.models import Student
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+
 
 # Display all students
 def home(request):
@@ -11,6 +14,58 @@ def home(request):
 def detail(request,id):
     student = Student.objects.get(id = id)
     return render(request, 'detail.html', {'student':student})
+
+
+
+def Userlogout(request):
+    logout(request)
+    return HttpResponseRedirect("/")
+
+
+def Userlogin(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request,user)
+            return HttpResponseRedirect("/")
+            # return HttpResponse("user and password is correct")
+        else:
+            return HttpResponse("user or password is not valid")
+
+    else:
+        if request.user.is_authenticated:
+            return HttpResponseRedirect("/")
+        return render(request,'login.html')
+
+
+def createUser(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        password = request.POST['password']
+        email = request.POST['email']
+
+        user = User.objects.create(
+            username=username,
+            first_name=first_name,
+            last_name=last_name,
+            # password=password,
+            email=email
+        )
+
+        user.set_password(password)
+
+        user.save()
+        return HttpResponseRedirect("/")
+
+
+    else:
+        return render(request,'createuser.html')
+
+
 
 def New_student(request):
     # st = Student.objects.get(id=id)
@@ -27,7 +82,6 @@ def New_student(request):
         stud.save()
 
         return HttpResponse('Successfully Saved')
-
 
 
 def edit_info(request, id):

@@ -26,5 +26,8 @@ urlpatterns = [
     path('detail/<int:id>',detail),
     path('New_student/',New_student),
     path('edit_info/<int:id>',edit_info),
-    path('delete_student/<int:id>',delete_student)
+    path('delete_student/<int:id>',delete_student),
+    path('create_user/',createUser),
+    path('login/',Userlogin),
+    path('logout/',Userlogout)
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

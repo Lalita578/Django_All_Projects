@@ -16,6 +16,7 @@
     <h4>{{ student.address }}</h4>
     <p>{{ student.phone_no }}</p>
     <button><a href="/edit_info/{{ student.id }}">Edit Information</a></button>
+    
     <button type="button" onclick="return confirm('Are you sure you want to delete this Student?');"><a href="/delete_student/{{ student.id }}">
         Delete Information
     </a></button>

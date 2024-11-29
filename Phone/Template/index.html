@@ -1,8 +1,12 @@
 
 
 {% for p in phn %}
-    <p>{{p.brand}}</p>
-    <p>{{p.storage}}</p>
+   <a href="detail/{{p.id}}"><h3>{{p.brand}}</h3></a>
+    <!-- <p>{{p.storage}}</p>
+    <p>{{p.camera}}</p>
+    <p>{{p.battery}}</p>
+    <p>{{p.display}}</p>
+    <p>{{p.price}}</p> -->
 {% endfor %}
 
 

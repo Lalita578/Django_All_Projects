@@ -1,6 +1,8 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'index.css' %}">
 
+
+<a href="/logout">Logout</a>
 <h1>Student List</h1>
 {% for st in stud %}
     <a href="/detail/{{st.id}}"><h2>{{ st.name }}</h2></a>
