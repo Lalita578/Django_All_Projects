@@ -25,5 +25,8 @@ urlpatterns = [
     path('Create/',Create),
     path('detail/<int:id>',detail),
     path('edit_info/<int:id>',edit_info),
-    path('detlet_phone/<int:id>',detlet_phone)
+    path('detlet_phone/<int:id>',detlet_phone),
+    path('createUser/',createUser),
+    path('Userlogin/',Userlogin),
+    path('Userlogout/',Userlogout)
 ]
